@@ -19,9 +19,11 @@ BEGIN
     -- ✅ Jointure directe trouvée
     IF direct_join IS NOT NULL THEN
         -- Vérification de la cohérence des données
-        EXECUTE format('SELECT COUNT(*) = 0 FROM % t1 JOIN % t2 ON % WHERE t1.% != t2.% LIMIT 1', 
-                       table1, table2, direct_join, (SELECT column_name FROM information_schema.columns WHERE table_name = table1 LIMIT 1), 
-                       (SELECT column_name FROM information_schema.columns WHERE table_name = table2 LIMIT 1)) INTO data_match;
+        EXECUTE 'SELECT COUNT(*) = 0 FROM ' || table1 || ' t1 JOIN ' || table2 || ' t2 ON ' || direct_join || 
+                ' WHERE t1.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table1 LIMIT 1) || 
+                ' != t2.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table2 LIMIT 1) || 
+                ' LIMIT 1'
+        INTO data_match;
 
         IF data_match THEN
             RAISE NOTICE '✅ Jointure directe possible avec des données cohérentes';
