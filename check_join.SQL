@@ -5,7 +5,7 @@ DECLARE
     direct_join TEXT;
     intermediate_join TEXT;
     intermediate_table TEXT;
-    data_match BOOLEAN;
+    data_match INTEGER;
 BEGIN
     -- 📌 Étape 1 : Vérification de la jointure directe
     SELECT STRING_AGG('t1.' || t1.column_name || ' = t2.' || t2.column_name, ' AND ')
@@ -19,16 +19,16 @@ BEGIN
     -- ✅ Jointure directe trouvée
     IF direct_join IS NOT NULL THEN
         -- Vérification de la cohérence des données
-        EXECUTE 'SELECT COUNT(*) = 0 FROM ' || table1 || ' t1 JOIN ' || table2 || ' t2 ON ' || direct_join || 
+        EXECUTE 'SELECT COUNT(*) FROM ' || table1 || ' t1 JOIN ' || table2 || ' t2 ON ' || direct_join || 
                 ' WHERE t1.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table1 LIMIT 1) || 
                 ' != t2.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table2 LIMIT 1) || 
                 ' LIMIT 1'
         INTO data_match;
 
-        IF data_match THEN
-            RAISE NOTICE '✅ Jointure directe possible avec des données cohérentes';
-            RAISE NOTICE 'SELECT * FROM % t1 JOIN % t2 ON %', table1, table2, direct_join;
-        ELSE
+        -- Si la requête retourne une ligne, cela signifie que les données sont incohérentes
+        IF data_match > 0 THEN
+            RAISE NOTICE '❌ Données incohérentes entre % et %.', table1, table2;
+
             -- 🔄 Étape 2 : Recherche d'une jointure via une table intermédiaire
             SELECT DISTINCT t1.table_name
             INTO intermediate_table
@@ -63,6 +63,9 @@ BEGIN
                 -- ❌ Aucune jointure trouvée
                 RAISE NOTICE '❌ Aucune jointure possible trouvée entre % et %.', table1, table2;
             END IF;
+        ELSE
+            RAISE NOTICE '✅ Jointure directe possible avec des données cohérentes';
+            RAISE NOTICE 'SELECT * FROM % t1 JOIN % t2 ON %', table1, table2, direct_join;
         END IF;
     ELSE
         RAISE NOTICE '❌ Aucune jointure directe trouvée entre % et %.', table1, table2;
