@@ -21,7 +21,7 @@ BEGIN
         -- Vérification de la cohérence des données
         EXECUTE 'SELECT COUNT(*) FROM ' || table1 || ' t1 JOIN ' || table2 || ' t2 ON ' || direct_join || 
                 ' WHERE t1.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table1 LIMIT 1) || 
-                ' != t2.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table2 LIMIT 1) || 
+                ' IS DISTINCT FROM t2.' || (SELECT column_name FROM information_schema.columns WHERE table_name = table2 LIMIT 1) || 
                 ' LIMIT 1'
         INTO data_match;
 
