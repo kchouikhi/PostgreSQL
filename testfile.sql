@@ -1,6 +1,7 @@
 DO $$
 DECLARE
     v_direct_join_found BOOLEAN := FALSE;
+    v_intermediate_results TEXT := '';
 BEGIN
     -- Vérification de la jointure directe (via une clé étrangère)
     SELECT EXISTS (
@@ -23,22 +24,25 @@ BEGIN
         RAISE NOTICE 'Pas de jointure directe trouvée. Recherche des tables intermédiaires...';
         
         -- Recherche des tables intermédiaires
-        WITH possible_columns AS (
-            SELECT table_name, column_name
-            FROM information_schema.columns
-            WHERE column_name IN (
-                SELECT column_name
-                FROM information_schema.columns
-                WHERE table_name IN ('nms_phys_comp', 'nms_ip_subnet')
-            )
-        )
-        SELECT DISTINCT c1.table_name AS table1, c1.column_name AS col1, c2.table_name AS table2, c2.column_name AS col2
-        FROM possible_columns c1
-        JOIN possible_columns c2
-          ON c1.column_name = c2.column_name
-         AND c1.table_name <> c2.table_name
-        WHERE c1.table_name NOT IN ('nms_phys_comp', 'nms_ip_subnet')
-          AND c2.table_name NOT IN ('nms_phys_comp', 'nms_ip_subnet')
-        ORDER BY c1.table_name, c2.table_name;
+        FOR rec IN
+            SELECT DISTINCT c1.table_name AS table1, c1.column_name AS col1, c2.table_name AS table2, c2.column_name AS col2
+            FROM information_schema.columns c1
+            JOIN information_schema.columns c2
+              ON c1.column_name = c2.column_name
+            WHERE c1.table_name IN ('nms_phys_comp', 'nms_ip_subnet')
+              AND c1.table_name <> c2.table_name
+              AND c2.table_name NOT IN ('nms_phys_comp', 'nms_ip_subnet')
+        LOOP
+            v_intermediate_results := v_intermediate_results || 
+                'Relation potentielle via : ' || rec.table1 || ' (' || rec.col1 || ') --> ' ||
+                rec.table2 || ' (' || rec.col2 || ')' || E'\n';
+        END LOOP;
+
+        -- Affichage des résultats intermédiaires
+        IF v_intermediate_results IS NOT NULL THEN
+            RAISE NOTICE '%', v_intermediate_results;
+        ELSE
+            RAISE NOTICE 'Aucune relation intermédiaire trouvée.';
+        END IF;
     END IF;
 END $$;
