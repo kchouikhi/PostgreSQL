@@ -2,6 +2,7 @@ DO $$
 DECLARE
     v_direct_join_found BOOLEAN := FALSE;
     v_intermediate_results TEXT := '';
+    rec RECORD;  -- Déclaration de la variable de type RECORD
 BEGIN
     -- Vérification de la jointure directe (via une clé étrangère)
     SELECT EXISTS (
