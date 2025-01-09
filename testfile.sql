@@ -32,4 +32,13 @@ BEGIN
                 WHERE table_name IN ('nms_phys_comp', 'nms_ip_subnet')
             )
         )
-        SELECT DISTINCT c1.table_name AS table1, c
+        SELECT DISTINCT c1.table_name AS table1, c1.column_name AS col1, c2.table_name AS table2, c2.column_name AS col2
+        FROM possible_columns c1
+        JOIN possible_columns c2
+          ON c1.column_name = c2.column_name
+         AND c1.table_name <> c2.table_name
+        WHERE c1.table_name NOT IN ('nms_phys_comp', 'nms_ip_subnet')
+          AND c2.table_name NOT IN ('nms_phys_comp', 'nms_ip_subnet')
+        ORDER BY c1.table_name, c2.table_name;
+    END IF;
+END $$;
