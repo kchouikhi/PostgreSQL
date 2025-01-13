@@ -5,3 +5,30 @@ AND a.id = s.id
 AND ip.hosted_on = n.id
 AND vlan.id = ip.ip_subnet
 ORDER BY mgmt_ip Desc
+
+
+
+
+
+
+SELECT 
+    vlan.name AS vlan_name, 
+    STRING_AGG(
+        get_byte(ip.active_addr, octet_length(ip.active_addr)-4)::text || '.' || 
+        get_byte(ip.active_addr, octet_length(ip.active_addr)-3)::text || '.' || 
+        get_byte(ip.active_addr, octet_length(ip.active_addr)-2)::text || '.' || 
+        get_byte(ip.active_addr, octet_length(ip.active_addr)-1)::text, 
+        ', '
+    ) AS ip_addresses,
+    COUNT(ip.name) AS ip_count
+FROM 
+    nms_node n
+    JOIN nms_snmp_agent a ON n.snmp_agent = a.id
+    JOIN nms_snmp_agent_settings s ON a.id = s.id
+    JOIN public.nms_ip_addr ip ON ip.hosted_on = n.id
+    JOIN public.nms_ip_subnet vlan ON vlan.id = ip.ip_subnet
+    JOIN public.nms_phys_comp phys_comp ON phys_comp.serial = n.serial
+GROUP BY 
+    vlan.name
+ORDER BY 
+    vlan.name;
