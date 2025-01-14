@@ -34,8 +34,14 @@ ORDER BY
     vlan.name;
 
 
-L’intégration de la nouvelles liste des VLANs dans NNMI via NNMI CLI a été effectué .
-Vous trouverez ci-jointe un fichier Excel qui regroupe la liste de tous les VLANs demandé par Alain .
-Dans  2/3h , après l’auto scan de NNMI , je partagerai la requête SQL et le fichier de découverte complet .
-Je reste disponible pour tous complément d’information .
+
+Voici une version corrigée de ton paragraphe :
+
+L’intégration de la nouvelle liste des VLANs dans NNMI via la CLI de NNMI a été effectuée.
+Vous trouverez ci-joint un fichier Excel regroupant la liste de tous les VLANs demandés par Alain.
+Dans 2 à 3 heures, après l'auto-scan de NNMI, je partagerai la requête SQL ainsi que le fichier de découverte complet.
+Je reste disponible pour tout complément d’information.
+
+N'hésite pas si tu veux d'autres ajustements !
+
 
