@@ -32,3 +32,10 @@ GROUP BY
     vlan.name
 ORDER BY 
     vlan.name;
+
+
+L’intégration de la nouvelles liste des VLANs dans NNMI via NNMI CLI a été effectué .
+Vous trouverez ci-jointe un fichier Excel qui regroupe la liste de tous les VLANs demandé par Alain .
+Dans  2/3h , après l’auto scan de NNMI , je partagerai la requête SQL et le fichier de découverte complet .
+Je reste disponible pour tous complément d’information .
+
