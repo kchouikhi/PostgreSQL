@@ -35,13 +35,31 @@ ORDER BY
 
 
 
-Voici une version corrigée de ton paragraphe :
+Hello , 
 
-L’intégration de la nouvelle liste des VLANs dans NNMI via la CLI de NNMI a été effectuée.
-Vous trouverez ci-joint un fichier Excel regroupant la liste de tous les VLANs demandés par Alain.
-Dans 2 à 3 heures, après l'auto-scan de NNMI, je partagerai la requête SQL ainsi que le fichier de découverte complet.
-Je reste disponible pour tout complément d’information.
+Je vous transmets en pièce jointe  un fichier Excel consolidé , regroupant les précédents fichiers
+	. La première feuille est dédiée aux données d’entrée(CMDB_LIST).
+	. Les autre feuilles sont structurées selon les critères établis(ip_addr , chassis)
 
-N'hésite pas si tu veux d'autres ajustements !
+1)	Châssis/serial représenter par la feuille chassis en pièce jointe 
+
+SELECT n.name as node_name,n.long_name AS hostname, phy.serial AS chassis,n.system_desc AS comentaire FROM nms_node n,nms_phys_comp phy
+WHERE n.id=phy.man_by
+AND n.reg_created > '2024-11-27 17:00:00'
+ 
+
+2)	 Ip address representer par la feuille Ip addr en pièce jointé 
+
+SELECT vlan.name AS VLAN ,ip.name AS IP_PER_VLAN ,n.long_name AS hostname,n.last_discovered AS discovered
+FROM nms_ip_addr ip , nms_node n , nms_ip_subnet vlan
+WHERE n.id = ip.hosted_on
+AND ip.ip_subnet = vlan.id
+AND ip.reg_created > '2024-11-27 17:00:00'
+
+
+Je reste disponible pour tout complément d’information .
+
+Regards.
+
 
 
