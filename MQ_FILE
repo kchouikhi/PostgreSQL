@@ -35,31 +35,65 @@ ORDER BY
 
 
 
-Hello , 
-
-Je vous transmets en pièce jointe  un fichier Excel consolidé , regroupant les précédents fichiers
-	. La première feuille est dédiée aux données d’entrée(CMDB_LIST).
-	. Les autre feuilles sont structurées selon les critères établis(ip_addr , chassis)
-
-1)	Châssis/serial représenter par la feuille chassis en pièce jointe 
-
-SELECT n.name as node_name,n.long_name AS hostname, phy.serial AS chassis,n.system_desc AS comentaire FROM nms_node n,nms_phys_comp phy
-WHERE n.id=phy.man_by
-AND n.reg_created > '2024-11-27 17:00:00'
- 
-
-2)	 Ip address representer par la feuille Ip addr en pièce jointé 
-
-SELECT vlan.name AS VLAN ,ip.name AS IP_PER_VLAN ,n.long_name AS hostname,n.last_discovered AS discovered
-FROM nms_ip_addr ip , nms_node n , nms_ip_subnet vlan
-WHERE n.id = ip.hosted_on
-AND ip.ip_subnet = vlan.id
-AND ip.reg_created > '2024-11-27 17:00:00'
 
 
-Je reste disponible pour tout complément d’information .
+Voici une version corrigée et améliorée de votre email :
 
-Regards.
+
+---
+
+Objet : Fichier Excel consolidé
+
+Bonjour,
+
+Veuillez trouver en pièce jointe un fichier Excel consolidé regroupant les précédents fichiers.
+
+La première feuille ("CMDB_LIST") est dédiée aux données d’entrée.
+
+Les autres feuilles sont structurées selon les critères établis : IP Address et Châssis.
+
+
+Détails des feuilles :
+
+1. Châssis/Serial (feuille "Chassis") :
+Cette feuille présente les données suivantes :
+
+
+
+SELECT n.name AS node_name,  
+       n.long_name AS hostname,  
+       phy.serial AS chassis,  
+       n.system_desc AS commentaire  
+FROM nms_node n,  
+     nms_phys_comp phy  
+WHERE n.id = phy.man_by  
+AND n.reg_created > '2024-11-27 17:00:00';
+
+2. IP Address (feuille "IP Addr") :
+Cette feuille contient les informations suivantes :
+
+
+
+SELECT vlan.name AS VLAN,  
+       ip.name AS IP_PER_VLAN,  
+       n.long_name AS hostname,  
+       n.last_discovered AS discovered  
+FROM nms_ip_addr ip,  
+     nms_node n,  
+     nms_ip_subnet vlan  
+WHERE n.id = ip.hosted_on  
+AND ip.ip_subnet = vlan.id  
+AND ip.reg_created > '2024-11-27 17:00:00';
+
+Je reste disponible pour toute information complémentaire.
+
+Cordialement,
+[Votre prénom et nom]
+
+
+---
+
+Cette version est plus lisible, professionnelle, et exempte de redondances.
 
 
 
