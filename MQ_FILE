@@ -85,15 +85,82 @@ WHERE n.id = ip.hosted_on
 AND ip.ip_subnet = vlan.id  
 AND ip.reg_created > '2024-11-27 17:00:00';
 
-Je reste disponible pour toute information complémentaire.
-
-Cordialement,
-[Votre prénom et nom]
-
-
----
-
-Cette version est plus lisible, professionnelle, et exempte de redondances.
 
 
 
+
+# Configuration initiale
+param (
+    [string]$SubnetFilePath,    # Chemin du fichier contenant les subnets
+    [string]$CommunityString,   # Chaîne SNMP community string
+    [string]$OutputExcelPath    # Chemin pour le fichier Excel de sortie
+)
+
+# Importer les modules nécessaires
+if (!(Get-Module -ListAvailable -Name ImportExcel)) {
+    Install-Module -Name ImportExcel -Force -Scope CurrentUser
+}
+Import-Module ImportExcel
+
+# Fonction pour calculer toutes les adresses IP possibles dans un subnet
+function Get-AllIPs {
+    param (
+        [string]$Subnet
+    )
+    $IPRange = (New-Object Net.IPAddress $Subnet).GetAddressBytes()
+    $IPs = @()
+    for ($i = 1; $i -lt 255; $i++) {
+        $IPs += "$($IPRange[0]).$($IPRange[1]).$($IPRange[2]).$i"
+    }
+    return $IPs
+}
+
+# Initialisation des listes
+$NoPing = @()
+$NoSNMP = @()
+$SNMPResponded = @()
+
+# Lire le fichier contenant les subnets
+$Subnets = Get-Content -Path $SubnetFilePath
+
+# Boucle sur chaque subnet
+foreach ($Subnet in $Subnets) {
+    Write-Output "Traitement du subnet : $Subnet"
+    $IPs = Get-AllIPs -Subnet $Subnet
+    
+    foreach ($IP in $IPs) {
+        # Test de ping
+        if (Test-Connection -ComputerName $IP -Count 1 -Quiet) {
+            # Tentative de communication SNMP
+            $SNMPResult = & snmpwalk -v 2c -c $CommunityString $IP
+            if ($SNMPResult) {
+                # Extraire les informations SNMP si réponse
+                $Details = @{
+                    Subnet = $Subnet
+                    IPAddress = $IP
+                    Hostname = (Resolve-DnsName -Name $IP -ErrorAction SilentlyContinue).NameHost
+                    MACAddress = $null # Remplacez par une méthode si nécessaire
+                    Type = $null        # Remplacez par une méthode si nécessaire
+                }
+                $SNMPResponded += $Details
+            } else {
+                # Ajouter à la liste "No SNMP"
+                $NoSNMP += $IP
+            }
+        } else {
+            # Ajouter à la liste "No Ping"
+            $NoPing += $IP
+        }
+    }
+}
+
+# Génération du fichier Excel
+Write-Output "Génération du fichier Excel..."
+$OutputData = @(
+    [PSCustomObject]@{List = "No Ping"; IPs = $NoPing}
+    [PSCustomObject]@{List = "No SNMP"; IPs = $NoSNMP}
+    [PSCustomObject]@{List = "SNMP Responded"; Details = $SNMPResponded}
+)
+
+$OutputData | Export-Excel -Path $OutputExcelPath -WorkSheetName "Results" -AutoSize
+Write-Output "Fichier Excel généré avec succès : $OutputExcelPath"
