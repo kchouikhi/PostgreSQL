@@ -171,3 +171,38 @@ $OutputData = @(
 
 $OutputData | Export-Excel -Path $OutputExcelPath -WorkSheetName "Results" -AutoSize
 Write-Output "Fichier Excel généré avec succès : $OutputExcelPath"
+
+
+
+
+
+Subject: Action Required: Remediation Procedure Following Security Vulnerability Scan
+
+Dear [Team Name],
+
+Following the recent security vulnerability scan conducted by the Audit and Security team, a vulnerability has been identified that requires immediate attention. In order to address this issue and maintain the integrity of our systems, we kindly request that you follow the remediation procedure outlined below:
+
+Procedure to Follow:
+
+1. [Step 1: Briefly describe the first step of the procedure, e.g., "Apply the provided security patch to the affected system."]
+
+
+2. [Step 2: Provide details of the next step, e.g., "Verify the patch installation and ensure all related services are running correctly."]
+
+
+3. [Step 3: Continue with additional steps as needed, e.g., "Perform post-remediation testing to confirm that the vulnerability has been resolved."]
+
+
+
+Please ensure that the remediation process is completed by [Deadline Date] and provide a confirmation email once all steps are finalized. If you encounter any issues during the process or need additional clarification, feel free to reach out to the Security team at [Contact Email].
+
+Your prompt attention to this matter is essential in ensuring the security of our systems.
+
+Thank you for your cooperation.
+
+Best regards,
+[Your Name]
+[Your Position]
+[Your Contact Information]
+
+
