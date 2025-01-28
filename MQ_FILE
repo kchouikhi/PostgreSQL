@@ -1,3 +1,16 @@
+Hello Marouen , 
+Tu trouveras l’état d’avancement sur le traitement de vuln dans la pice jointe , j’ai créé tous les ticket RITM  Pour remédier a cette vulnaribilité 
+Comme convencu tu peux stp nous donneé  le code projet pour un chiffrage JH  .
+
+
+
+
+
+
+
+
+
+
 SELECT vlan.name as vLAN_Name, n.name as Node_Name, ip.name as IP_Address, phys_comp.serial as chassis, s.active_addr, get_byte(active_addr,octet_length(active_addr)-4)||'.'||get_byte(active_addr,octet_length(active_addr)-3)||'.'||get_byte(active_addr,octet_length(active_addr)-2)||'.'||get_byte(active_addr,octet_length(active_addr)-1) as mgmt_ip
 FROM nms_node n, nms_snmp_agent a, nms_snmp_agent_settings s ,public.nms_ip_addr as ip, public.nms_ip_subnet as vlan, public.nms_phys_comp as phys_comp
 WHERE n.snmp_agent = a.id
