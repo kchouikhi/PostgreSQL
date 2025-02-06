@@ -1,3 +1,47 @@
+Function MasqueEnCIDR(mask As String) As String
+    Dim octets As Variant
+    Dim cidr As Integer
+    Dim i As Integer
+    
+    ' Vérifier si l'entrée est valide
+    If InStr(mask, ".") = 0 Then
+        MasqueEnCIDR = "Erreur"
+        Exit Function
+    End If
+    
+    octets = Split(mask, ".") ' Séparer les octets
+    
+    If UBound(octets) <> 3 Then ' Vérifier qu'il y a bien 4 octets
+        MasqueEnCIDR = "Erreur"
+        Exit Function
+    End If
+    
+    For i = 0 To 3
+        Select Case Trim(octets(i))
+            Case "255": cidr = cidr + 8
+            Case "254": cidr = cidr + 7
+            Case "252": cidr = cidr + 6
+            Case "248": cidr = cidr + 5
+            Case "240": cidr = cidr + 4
+            Case "224": cidr = cidr + 3
+            Case "192": cidr = cidr + 2
+            Case "128": cidr = cidr + 1
+            Case "0": cidr = cidr + 0
+            Case Else:
+                MasqueEnCIDR = "Erreur"
+                Exit Function
+        End Select
+    Next i
+    
+    MasqueEnCIDR = "/" & cidr
+End Function
+
+
+
+
+
+
+
 =SUMPRODUCT(LEN(SUBSTITUTE(A1,".","")) - LEN(SUBSTITUTE(SUBSTITUTE(A1,".",""),"255","")))
 
 
