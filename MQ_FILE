@@ -1,3 +1,26 @@
+
+Function MasqueEnCIDR(mask As String) As String
+    Dim octets As Variant
+    Dim cidr As Integer
+    Dim i As Integer
+    
+    octets = Split(mask, ".")
+    For i = 0 To 3
+        Select Case octets(i)
+            Case "255": cidr = cidr + 8
+            Case "254": cidr = cidr + 7
+            Case "252": cidr = cidr + 6
+            Case "248": cidr = cidr + 5
+            Case "240": cidr = cidr + 4
+            Case "224": cidr = cidr + 3
+            Case "192": cidr = cidr + 2
+            Case "128": cidr = cidr + 1
+        End Select
+    Next i
+    
+    MasqueEnCIDR = "/" & cidr
+End Function
+
 Voici une version améliorée et plus professionnelle de votre message :
 
 
