@@ -1,3 +1,47 @@
+Voici votre texte corrigé et rendu plus professionnel pour un e-mail :
+
+
+---
+
+Objet : Avancement du traitement des données Infoblox
+
+Bonjour [Nom du destinataire],
+
+J’ai réalisé une première extraction brute des données Infoblox. Après l’avoir intégrée dans Excel, j’ai procédé au formatage afin de rendre les informations lisibles.
+
+Sauf erreur de ma part, les données disponibles semblent couvrir l’ensemble des sous-réseaux de notre parc CACIB, ce qui signifie que nous avons potentiellement recensé tous les équipements.
+
+Voici les prochaines étapes du processus :
+
+1. Formatage des données : Conversion des données brutes en un format lisible, avec notation adresse IP/CIDR (ex. : 192.168.1.1/24).
+
+
+2. Déploiement d’une nouvelle instance NNMi.
+
+
+3. Intégration des sous-réseaux dans NNMi, puis découverte automatique des équipements connectés.
+
+
+4. Extraction des équipements réseau (routeurs, commutateurs, pare-feu, etc.).
+
+
+5. Génération d’un fichier Excel consolidé, qui sera comparé à la base CMDB.
+
+
+
+N’hésitez pas à me faire part de vos retours ou à me signaler toute information complémentaire nécessaire.
+
+Cordialement,
+[Votre Nom]
+[Votre Fonction]
+
+
+
+
+
+
+
+
 J’ai eu une première  extracte de infoblox brute , je le mets en excel et je formate les donnée pour quel soit lisible 
 je rappel que sauf erreur de ma part que maintenant selon ce que j’ai comme données que j’ai tous les Subnet des notre parc cacib autrement dit j’ai eu tous les équipement possible  , donc voici les etape qui suit : 
 1 formatage de données brute et rendre le lisible et en format addresse ip/CIDR (exemple : 192.168.1.1/24)
