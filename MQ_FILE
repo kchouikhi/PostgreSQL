@@ -1,3 +1,14 @@
+J’ai eu une première  extracte de infoblox brute , je le mets en excel et je formate les donnée pour quel soit lisible 
+je rappel que sauf erreur de ma part que maintenant selon ce que j’ai comme données que j’ai tous les Subnet des notre parc cacib autrement dit j’ai eu tous les équipement possible  , donc voici les etape qui suit : 
+1 formatage de données brute et rendre le lisible et en format addresse ip/CIDR (exemple : 192.168.1.1/24)
+2 monter une nouvel instance NNMI 
+3 integer les subnet dans NNMI et on le laisse découvrir tous les équipement derrière 
+4 faire un extract sur juste les equipement réseaux comme (Router , switcher , firewall , etc … )
+5 generer un fichier excel complet  qui va être comparer avec la base CMDB
+
+
+
+
 Function MasqueEnCIDR(mask As String) As String
     Dim octets As Variant
     Dim cidr As Integer
