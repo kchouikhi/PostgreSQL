@@ -1,3 +1,6 @@
+=SUMPRODUCT(LEN(SUBSTITUTE(A1,".","")) - LEN(SUBSTITUTE(SUBSTITUTE(A1,".",""),"255","")))
+
+
 
 Function MasqueEnCIDR(mask As String) As String
     Dim octets As Variant
