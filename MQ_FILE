@@ -1,3 +1,35 @@
+Voici une version plus professionnelle et mieux rédigée de ton paragraphe pour un e-mail :
+
+
+---
+
+Objet : Transmission du fichier Excel – Sous-réseaux CACIB
+
+Bonjour [Nom],
+
+Comme convenu lors de notre échange, je vous transmets le fichier Excel dans un format lisible, avec la notation des adresses IP en CIDR.
+
+D'après l'équipe réseau, les sous-réseaux indiqués dans ce fichier représentent l'ensemble des sous-réseaux de CACIB. Toutefois, une confirmation officielle de leur part serait nécessaire pour validation.
+
+Par ailleurs, le fichier Excel contient des macros en VBA permettant de calculer automatiquement les sous-réseaux dans la colonne D via la fonction MasqueEnCIDR. Pour plus de détails sur cette fonction, vous pouvez accéder au code VBA en appuyant sur Alt + F11.
+
+N'hésitez pas à me faire part de vos retours.
+
+Cordialement,
+[Votre Nom]
+
+
+---
+
+Cette version est plus fluide, plus claire et plus formelle. Tu veux que j’adapte le ton différemment ?
+
+
+
+
+
+
+
+
 Comme discuté dans notre point , je vous joint le fichier excel en un format lisible, avec notation adresse IP/CIDR .
 Selon l’equipe réseaux les subnet dans le fichier excel reprensente l’ensemble des sous-reseaux cacib , mais il faut quelqu’un de l’equipe reseux que nous comfirme ça noir sur blanc
 Noter bien le fichier excel utilise des marco en vb pour calculer les subnet en automatique colonne D à l’aide de la fonction MasqueEnCIDR (pour plus de detail sur la fonction cliquer sur alt+F11)
