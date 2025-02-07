@@ -1,3 +1,13 @@
+Comme discuté dans notre point , je vous joint le fichier excel en un format lisible, avec notation adresse IP/CIDR .
+Selon l’equipe réseaux les subnet dans le fichier excel reprensente l’ensemble des sous-reseaux cacib , mais il faut quelqu’un de l’equipe reseux que nous comfirme ça noir sur blanc
+Noter bien le fichier excel utilise des marco en vb pour calculer les subnet en automatique colonne D à l’aide de la fonction MasqueEnCIDR (pour plus de detail sur la fonction cliquer sur alt+F11)
+Merci !
+
+
+
+
+
+
 Voici votre texte corrigé et rendu plus professionnel pour un e-mail :
 
 
