@@ -1,3 +1,40 @@
+Objet : Demande de création d’un projet Jira pour l’équipe Monitoring
+
+Bonjour [Nom du destinataire],
+
+Merci pour l’accès à Jira.
+
+Je t’explique brièvement notre besoin : nous avons demandé cet accès afin de mieux nous organiser et structurer notre suivi des tâches. Notre équipe est composée de quatre acteurs principaux : PROD, DEV, Coordinateur et Manager.
+
+L’objectif est d’assurer un suivi efficace de nos tâches quotidiennes, d’avoir un backlog structuré et d’adopter les bonnes pratiques en matière de gestion des tickets.
+
+Dans ce cadre, serait-il possible de créer un nouveau projet nommé "Tooling", avec les types de tickets suivants :
+
+Tool-DEV : pour les tâches de développement
+
+Tool-MON : pour les tâches de monitoring en production
+
+Tool-DIR : pour les tâches de management et de coordination
+
+
+Peux-tu également me préciser si ces terminologies sont conformes aux bonnes pratiques de Jira, ou si des ajustements sont nécessaires ?
+
+Je reste à disposition pour toute information complémentaire.
+
+Merci d’avance pour ton aide !
+
+Cordialement,
+[Votre Nom]
+
+
+
+
+
+
+
+
+
+
 Hello Romain, 
 
 Merci pour l’acces , je t’explique gros somodo , on a demander l’acces a jira pour s’organiser entre nous , on est une equipe qui regoupe principalement 4 acteur principale ( PROD , DEV , Coordianteur , Manager ) , le but est d’assurer les suivi de nos tache quatidien , d’avoir un backlog  de suivi et de utiliser les bonne pratique , Donc est ce que c’est possible de crée un nouveaux projet qui s’appelle Tooling  avec 3 type de story  Tool-DEV ( ticket de type  develeppoment  , Tool-Mon (ticket de type  Prod monitoring , Tool-DIR (ticket de type management et coordination) 
