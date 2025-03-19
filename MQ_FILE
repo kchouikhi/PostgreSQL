@@ -1,6 +1,35 @@
 Thanks for the bellow  documentation , actually we have 2 env one with 10  version and the other is with 11.1.5 version .
 I used this documentation to migrate from LDAP to LDAPs  TLS for LDAP authentication | Vertica 11.1.x.( we have another env with 11.1.5 version) but it doesn’t work .
-Can we schedule a meeting to assist us on it 
+Can we schedule a meeting to assist us on it
+
+
+
+Voici une version corrigée et améliorée de ton mail :
+
+
+---
+
+Subject: Assistance for LDAP to LDAPS Migration Issue
+
+Hi [Recipient's Name],
+
+Thank you for the documentation below.
+
+We currently have two environments: one running version 10 and the other running version 11.1.5. I followed the provided documentation to migrate from LDAP to LDAPS (TLS for LDAP authentication) on our Vertica 11.1.x environment, but unfortunately, it did not work.
+
+Would it be possible to schedule a meeting to assist us with this issue?
+
+Looking forward to your response.
+
+Best regards,
+[Your Name]
+
+
+---
+
+Cette version est plus fluide, professionnelle et claire.
+
+ 
 
 
 
