@@ -1,3 +1,14 @@
+Hello , 
+@VALOJITCH Sebastien (PRESTATAIRE CA-GIP) , je t’envoi un mail en privé ou y’a le fichier de log reçu par le AUTO WAF , ça va t’aider a nous remplir le tableau ci-dessous ainsi que les champs nécessaire à collecter pour l’afficher dans un event OMI , en prenons en compte qu’on a besoin que la structure d’un ligne de log ça ne change jamais , exemple ( la ligne de log commence tjrs part la date , protocol , type , msg , etc …. , il faut que tous les ligne on la même structure )
+d’autre part , il faut que tu nous donne le bon pattern a utiliser pour créer un event , exemple ( application : aptimall , msg blocked , gzip , protocol etc …)
+un bon pattern c’est un pattern avec le maximum de champs ça va nous aider a capter que les event partinante et ça va créer des alert/mail plus senifiacative a votre équipe .
+
+
+
+
+
+
+
 Merci pour le log. Voici les regex dans les deux formats que tu peux utiliser pour extraire les champs utiles depuis ce log F5 ASM (en format CEF) :
 
 
