@@ -1,3 +1,37 @@
+Voici une version corrigée et professionnalisée de ton mail :
+
+
+---
+
+Objet : Analyse des logs AUTO WAF et définition du pattern d’événement OMI
+
+Bonjour @VALOJITCH Sebastien (PRESTATAIRE CA-GIP),
+
+Je viens de t’envoyer un mail privé contenant le fichier de log reçu par l’AUTO WAF. Ce fichier te permettra de compléter le tableau ci-dessous, ainsi que d’identifier les champs nécessaires à collecter pour générer un événement dans OMI.
+
+Merci de prendre en compte que la structure d’une ligne de log ne doit jamais changer. Chaque ligne doit suivre un format constant (par exemple : date, protocole, type, message, etc.). Il est impératif que toutes les lignes respectent cette structure.
+
+Par ailleurs, nous avons besoin que tu nous proposes un pattern optimal à utiliser pour la création des événements. Exemple :
+application: aptimall, message: blocked, encodage: gzip, protocole, etc.
+
+L’objectif est d’avoir un pattern contenant un maximum de champs pertinents. Cela nous permettra de capter uniquement les événements importants et de générer des alertes/mails réellement significatifs pour votre équipe.
+
+Merci d’avance pour ton retour,
+Bien cordialement,
+[Ton prénom / nom]
+
+
+---
+
+Tu veux que je le reformule aussi en anglais ou en version plus synthétique ?
+
+
+
+
+
+
+
+
 Hello , 
 @VALOJITCH Sebastien (PRESTATAIRE CA-GIP) , je t’envoi un mail en privé ou y’a le fichier de log reçu par le AUTO WAF , ça va t’aider a nous remplir le tableau ci-dessous ainsi que les champs nécessaire à collecter pour l’afficher dans un event OMI , en prenons en compte qu’on a besoin que la structure d’un ligne de log ça ne change jamais , exemple ( la ligne de log commence tjrs part la date , protocol , type , msg , etc …. , il faut que tous les ligne on la même structure )
 d’autre part , il faut que tu nous donne le bon pattern a utiliser pour créer un event , exemple ( application : aptimall , msg blocked , gzip , protocol etc …)
