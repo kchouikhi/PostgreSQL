@@ -1,3 +1,322 @@
+servers:
+  - host: "192.168.1.10"
+    username: "admin"
+    password: "password"
+    log_paths:
+      - "C:\\logs\\app1.log"
+      - "C:\\logs\\security.log"
+
+  - host: "192.168.1.11"
+    username: "admin"
+    password: "password"
+    log_paths:
+      - "D:\\logs\\app2.log"
+
+opensearch:
+  host: "http://your-opensearch:9200"
+  username: "os_user"
+  password: "os_pass"
+
+
+
+
+
+import re
+from datetime import datetime
+
+# Exemple de regex générique
+LOG_REGEX = re.compile(
+    r'(?P<timestamp>\d{4}-\d{2}-\d{2}[\sT]\d{2}:\d{2}:\d{2})\s*?(?P<level>[A-Z]+)?\s*(?P<message>.+)'
+)
+
+def parse_log_line(line):
+    match = LOG_REGEX.search(line)
+    if match:
+        return {
+            "timestamp": match.group("timestamp"),
+            "level": match.group("level"),
+            "message": match.group("message")
+        }
+    else:
+        return {"raw": line, "parsed": False}
+
+
+
+
+
+import requests
+import hashlib
+
+class OpenSearchClient:
+    def __init__(self, host, username, password):
+        self.base_url = host
+        self.auth = (username, password)
+
+    def send_log(self, index_name, document):
+        safe_index = index_name.lower().replace(" ", "_").replace(".", "_")
+        url = f"{self.base_url}/{safe_index}/_doc/"
+        res = requests.post(url, auth=self.auth, json=document)
+        return res.status_code, res.text
+
+
+
+
+
+
+
+import yaml
+import winrm
+import logging
+from log_parser import parse_log_line
+from opensearch_client import OpenSearchClient
+
+# Initialisation du logger
+logging.basicConfig(
+    filename='log_collector.log',
+    filemode='a',
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    level=logging.INFO
+)
+
+def read_remote_file(session, path):
+    try:
+        cmd = f'type "{path}"'
+        result = session.run_cmd(cmd)
+        if result.status_code != 0:
+            logging.warning(f"Command failed on {path}: {result.std_err.decode()}")
+        return result.std_out.decode().splitlines()
+    except Exception as e:
+        logging.error(f"Erreur lors de la lecture du fichier {path}: {str(e)}")
+        return []
+
+def main():
+    try:
+        with open("config.yaml", "r") as f:
+            config = yaml.safe_load(f)
+    except Exception as e:
+        logging.critical(f"Erreur de chargement du fichier config.yaml: {str(e)}")
+        return
+
+    os_client = OpenSearchClient(**config["opensearch"])
+    total_errors = 0
+
+    for server in config["servers"]:
+        try:
+            session = winrm.Session(
+                f'http://{server["host"]}:5985/wsman',
+                auth=(server["username"], server["password"])
+            )
+            logging.info(f"Connexion réussie au serveur {server['host']}")
+        except Exception as e:
+            logging.error(f"Échec de connexion au serveur {server['host']}: {str(e)}")
+            total_errors += 1
+            continue
+
+        for path in server["log_paths"]:
+            lines = read_remote_file(session, path)
+            index_name = path.split("\\")[-1].replace(".log", "").lower()
+
+            for line in lines:
+                parsed = parse_log_line(line)
+                try:
+                    status, response = os_client.send_log(index_name, parsed)
+                    if status >= 400:
+                        logging.warning(f"Erreur OpenSearch ({status}): {response}")
+                        total_errors += 1
+                except Exception as e:
+                    logging.error(f"Erreur lors de l’envoi à OpenSearch: {str(e)}")
+                    total_errors += 1
+
+    logging.info("Collecte terminée.")
+    print(f"Script terminé avec {total_errors} erreur(s). Voir 'log_collector.log' pour les détails.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Configuration du logger avec rotation
+logger = logging.getLogger("LogCollector")
+logger.setLevel(logging.INFO)
+
+log_handler = RotatingFileHandler(
+    "log_collector.log",
+    maxBytes=5 * 1024 * 1024,  # 5 Mo
+    backupCount=3              # Nombre de fichiers à garder
+)
+log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+log_handler.setFormatter(log_formatter)
+logger.addHandler(log_handler)
+
+
+
+logger.info("...")
+logger.error("...")
+logger.warning("...")
+logger.critical("...")
+
+
+
+
+
+
+
+
+Parfait, je vais te générer un script structuré, modulaire, et intelligent pour :
+
+Se connecter à plusieurs serveurs via WinRM
+
+Lire plusieurs fichiers de logs texte brut
+
+Utiliser une regex générique intelligente pour extraire timestamp, niveau, message, etc.
+
+Créer un index par fichier dans OpenSearch
+
+Authentification OpenSearch gérée
+
+
+
+---
+
+Structure du projet :
+
+log_collector/
+├── config.yaml
+├── log_parser.py
+├── opensearch_client.py
+└── main.py
+
+
+---
+
+1. config.yaml – Liste des serveurs et chemins
+
+servers:
+  - host: "192.168.1.10"
+    username: "admin"
+    password: "password"
+    log_paths:
+      - "C:\\logs\\app1.log"
+      - "C:\\logs\\security.log"
+
+  - host: "192.168.1.11"
+    username: "admin"
+    password: "password"
+    log_paths:
+      - "D:\\logs\\app2.log"
+
+opensearch:
+  host: "http://your-opensearch:9200"
+  username: "os_user"
+  password: "os_pass"
+
+
+---
+
+2. log_parser.py – Extraction intelligente
+
+import re
+from datetime import datetime
+
+# Exemple de regex générique
+LOG_REGEX = re.compile(
+    r'(?P<timestamp>\d{4}-\d{2}-\d{2}[\sT]\d{2}:\d{2}:\d{2})\s*?(?P<level>[A-Z]+)?\s*(?P<message>.+)'
+)
+
+def parse_log_line(line):
+    match = LOG_REGEX.search(line)
+    if match:
+        return {
+            "timestamp": match.group("timestamp"),
+            "level": match.group("level"),
+            "message": match.group("message")
+        }
+    else:
+        return {"raw": line, "parsed": False}
+
+
+---
+
+3. opensearch_client.py – Envoi vers OpenSearch
+
+import requests
+import hashlib
+
+class OpenSearchClient:
+    def __init__(self, host, username, password):
+        self.base_url = host
+        self.auth = (username, password)
+
+    def send_log(self, index_name, document):
+        safe_index = index_name.lower().replace(" ", "_").replace(".", "_")
+        url = f"{self.base_url}/{safe_index}/_doc/"
+        res = requests.post(url, auth=self.auth, json=document)
+        return res.status_code, res.text
+
+
+---
+
+4. main.py – Contrôle principal
+
+import yaml
+import winrm
+from log_parser import parse_log_line
+from opensearch_client import OpenSearchClient
+
+def read_remote_file(session, path):
+    cmd = f'type "{path}"'
+    result = session.run_cmd(cmd)
+    return result.std_out.decode().splitlines()
+
+def main():
+    with open("config.yaml", "r") as f:
+        config = yaml.safe_load(f)
+
+    os_client = OpenSearchClient(**config["opensearch"])
+
+    for server in config["servers"]:
+        session = winrm.Session(
+            f'http://{server["host"]}:5985/wsman',
+            auth=(server["username"], server["password"])
+        )
+        for path in server["log_paths"]:
+            lines = read_remote_file(session, path)
+            index_name = path.split("\\")[-1].replace(".log", "").lower()
+            for line in lines:
+                parsed = parse_log_line(line)
+                os_client.send_log(index_name, parsed)
+
+if __name__ == "__main__":
+    main()
+
+
+---
+
+Installation des dépendances :
+
+pip install requests pywinrm pyyaml
+
+
+---
+
+Tu veux que je te prépare un ZIP complet du projet ou tu préfères un script monofichier ?
+Et tu veux que je t’ajoute une gestion d’erreur + logs aussi ?
+
+
+
+
+
+
+
 Voici une version corrigée et professionnalisée de ton mail :
 
 
