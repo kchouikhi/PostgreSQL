@@ -1,3 +1,32 @@
+Voici un exemple de mail professionnel en anglais :
+
+
+---
+
+Subject: Notification of LDAP to LDAPS Migration on OpticDataLake Production
+
+Dear team,
+
+I would like to inform you that we will be performing a migration from LDAP to LDAPS on the OpticDataLake production environment.
+
+Please note that this change is transparent and there will be no service interruption. All integrations and functionalities will remain operational as usual.
+
+If you have any questions or notice any unexpected behavior, feel free to reach out.
+
+Best regards,
+[Your Name]
+
+
+---
+
+Tu veux que je le rende un peu plus formel ou plus décontracté ?
+
+
+
+
+
+
+
 servers:
   - host: "192.168.1.10"
     username: "admin"
