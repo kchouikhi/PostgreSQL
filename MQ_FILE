@@ -1,3 +1,41 @@
+Voici une version corrigée et professionnalisée de ton mail :
+
+
+---
+
+Objet : Optimisation du pattern pour les événements OBM
+
+Bonjour Sébastien,
+
+Merci pour votre retour.
+
+J’ai déjà testé l’approche consistant à filtrer uniquement les lignes contenant le motif "blocked". Le volume généré reste cependant très important (voir l'extrait ci-dessous).
+
+C’est pourquoi j’ai sollicité un pattern incluant un maximum de champs pertinents, afin de limiter les faux positifs et d’améliorer la pertinence des événements générés.
+
+Serait-il possible d’optimiser davantage ce pattern s’il vous plaît ?
+
+Note : dans OBM, un événement déclenche une alerte, et dans le pire des cas, cela peut entraîner un appel OnCall en pleine nuit pour intervention.
+
+Merci d’avance pour votre aide.
+
+Bien cordialement,
+Karim
+
+
+---
+
+Tu veux que je le traduise en anglais aussi ?
+
+
+
+
+
+
+
+
+
+
 Hello Sebastien , 
 Merci pour votre réponse , j’ai déjà tester cette approche en filtrant sur juste les ligne ou y’a le motif blocked c’est énorme , voir ci-dessous
  
