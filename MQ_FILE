@@ -1,3 +1,18 @@
+Appli qui scanne des vulnérabilités. Environ 20 scanners dans le monde. migration de Sentos vers Oracle 8. Ils veulent de la supp. 12 de migré, et 14 à venir. Supervision à mettre sur ceux migrés et pour les 14 sur les prochains mois. Ils n'ont pas de liste de check a part les check habituels mémore, ram, cpu... Métriques de bases. 1 spécificité : pour la console tenable, c'est pas un scanner ca sera migré plus tard. Il faudra qu'on ait le pourcentage d'espace de disque restant sur la partie /OPT (à voir plus tard)
+ 
+Si Alerte sur les métriques ex CPU à fond : Mail à l'équipe Run ou demander à qq1 de fixer ? Pas besoin de déranger l'astreinte pour ca, on peut attendre le lendemain ou le lundi. De toute facon, c'est l'équipe outil qui sera alerté, à savoir Karim et Amine
+ 
+L'alerte doit remonter à l'équipe outil
+ 
+Il y'a déja une liste de check déployé via Xabix sur les dataenter et les environnement CAGIP d'apres Amine et finalement Lucie dit qu'il n'ya pas de liste elle s'est trompé
+ 
+Pour Tenable, il faut monitorer pour la console principale l'espace disque et une partition en particulier le /OPT donc il s'agit du manager et l'espace serveur. 
+ 
+
+
+
+
+
 Voici une version corrigée et professionnalisée de ton mail :
 
 
