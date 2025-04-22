@@ -1,3 +1,20 @@
+Hello Mark ,
+
+First thanks for your help in this project , as discussed today I’m sending this email to resume and to give update about what we did and what is in progress with the due date that I confirmed with you .
+With the help of Shamir and recording the sample list give to him , he checked the flow searching for any firewall can block the communication between my sources and all the possible destination , as of now we didn’t find any blocked flow that impacting our ICMP to communicate with hosts/network equipment’s, so we contacted mark to check the SNMP config side in some switch and router , he did the configuration is some of them and he asked me to do the test .
+I did the test from my sources servers and I can say that after his config the SNMP work properly ,so this is  what we will do for the next steps 
+Mark will share with me an excel sheet with all the possible network equipment , with that I can see the progress of the configuration .
+The due date requested by mark is 3 weeks so let’s say from this week until 12th may  with a weekly meeting the check the progress and to do some test   .
+I will share the excel sheet and the progress when I have it .
+Thanks in advance ! 
+
+
+
+
+
+
+
+
 Appli qui scanne des vulnérabilités. Environ 20 scanners dans le monde. migration de Sentos vers Oracle 8. Ils veulent de la supp. 12 de migré, et 14 à venir. Supervision à mettre sur ceux migrés et pour les 14 sur les prochains mois. Ils n'ont pas de liste de check a part les check habituels mémore, ram, cpu... Métriques de bases. 1 spécificité : pour la console tenable, c'est pas un scanner ca sera migré plus tard. Il faudra qu'on ait le pourcentage d'espace de disque restant sur la partie /OPT (à voir plus tard)
  
 Si Alerte sur les métriques ex CPU à fond : Mail à l'équipe Run ou demander à qq1 de fixer ? Pas besoin de déranger l'astreinte pour ca, on peut attendre le lendemain ou le lundi. De toute facon, c'est l'équipe outil qui sera alerté, à savoir Karim et Amine
