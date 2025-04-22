@@ -1,0 +1,11 @@
+servers:
+  - host: "10.179.3.205"
+    username: "admin"
+    password: "password"
+    log_paths:
+      - "D:\\ProgramData\\HP\\HP BTO Software\\log\\System.log"
+
+opensearch:
+  host: "https://localhost:9200/"
+  username: "admin"
+  password: "Opensearch@@@@102030"
