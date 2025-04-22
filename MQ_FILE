@@ -1,3 +1,50 @@
+Bien sûr ! Voici une version plus simple et directe de ton mail, tout en restant professionnelle :
+
+
+---
+
+Subject: Project Update and Next Steps
+
+Hi Mark,
+
+Thank you again for your help on this project. As we discussed today, I’m sending this email to give you a quick summary and update on what has been done so far and what’s coming next, with the timeline we agreed on.
+
+With Shamir’s help, and using the sample list we gave him, he checked the network flow to see if any firewall is blocking communication between our source servers and the destination devices. So far, we didn’t find any blocked traffic that would stop ICMP from reaching the hosts or network equipment.
+
+After that, we contacted you to check the SNMP configuration on some switches and routers. You did the configuration on some of them and asked me to run tests.
+
+I did the tests from our source servers, and I can confirm that SNMP is now working well on the devices you configured.
+
+Next steps:
+
+You will send me an Excel file with a list of all the network equipment that needs SNMP configuration.
+
+With this file, I’ll be able to track the progress and make sure everything is tested.
+
+The deadline we agreed on is May 12th, so we have about 3 weeks starting from this week.
+
+We’ll have weekly meetings to check the progress and do more tests if needed.
+
+
+Once I get the Excel file, I’ll share it along with the status updates.
+
+Thanks in advance for your support!
+
+Best regards,
+[Your Name]
+
+
+---
+
+Tu veux que je le traduise aussi en français ou tu comptes l’envoyer direct ?
+
+
+
+
+
+
+
+
 Hello Mark ,
 
 First thanks for your help in this project , as discussed today I’m sending this email to resume and to give update about what we did and what is in progress with the due date that I confirmed with you .
