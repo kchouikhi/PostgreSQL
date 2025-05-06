@@ -1,3 +1,20 @@
+Bonjour Sebastien , 
+j’ai une première version juste pour te donner une approche Visual sur les événement générer à partir de log F5  dans OMB en ce basant sur le pattern « blocked »  , voila l’imprime écran  montre les évènements dans une Dashboard spécifique pour Optimall .
+
+Ce que je te demande est de me remplir le tableau suivant avec les donner nécessaire a fin d’enrichir d’avantage les évents  
+Est-ce que tu peux me rappeler qui va suivre les evenements et c’est quoi la procedure a prendre on cas d’un event créer autrement dit , si un blocked s’affiche dans la dashboard , c’est quoi l’action qui suive ?
+
+
+
+
+
+
+
+
+
+
+
+
 from opensearchpy import OpenSearch
 
 def send_to_opensearch(index_name, events, config):
