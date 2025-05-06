@@ -1,3 +1,39 @@
+Voici une version corrigée et professionnelle de ton mail :
+
+
+---
+
+Objet : Visualisation des événements "blocked" dans OMB – Demande d'informations complémentaires
+
+Bonjour Sébastien,
+
+Je t’envoie une première version afin de te donner une idée visuelle des événements générés à partir des logs F5 dans OMB, en se basant sur le pattern « blocked ». Tu trouveras ci-joint une capture d’écran illustrant les événements affichés dans un tableau de bord spécifique dédié à Optimall.
+
+Pour aller plus loin, pourrais-tu remplir le tableau ci-joint avec les informations nécessaires afin d’enrichir davantage les événements ?
+
+Par ailleurs, pourrais-tu me rappeler qui est en charge du suivi de ces événements, et quelle est la procédure à suivre lorsqu’un événement est généré ? Concrètement, si un événement « blocked » apparaît dans le tableau de bord, quelle est l’action attendue ?
+
+Merci d’avance pour ton retour.
+
+Bien cordialement,
+[Ton prénom ou ton nom]
+
+
+---
+
+Souhaites-tu que je te prépare aussi le tableau à remplir en pièce jointe ?
+
+
+
+
+
+
+
+
+
+
+
+
 Bonjour Sebastien , 
 j’ai une première version juste pour te donner une approche Visual sur les événement générer à partir de log F5  dans OMB en ce basant sur le pattern « blocked »  , voila l’imprime écran  montre les évènements dans une Dashboard spécifique pour Optimall .
 
